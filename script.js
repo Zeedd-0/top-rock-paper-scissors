@@ -71,13 +71,14 @@ function roundText(computerChoice, humanChoice, point) {
         case 0:
             result = 'tie';
             play = 'is equal to';
-            console.log(`It is a ${result}! ${humanChoice} ${play} ${computerChoice}!`);
+            console.log(`It is a ${result}! ${humanChoice.split('')[0].toUpperCase() + humanChoice.slice(1, humanChoice.length)} ${play} ${computerChoice}!`);
             return;
     }
     console.log(`You ${result}! ${humanChoice.split('')[0].toUpperCase() + humanChoice.slice(1, humanChoice.length)} ${play} ${computerChoice}!`);
 }
 // storing round score
 function scoreRound(point) {
+    let result;
     if (point === 1) {
         humanScore++;
     } else if (point === -1) {
@@ -86,7 +87,13 @@ function scoreRound(point) {
         return;
     }
     round++;
-    console.log(`You ${humanScore} vs Computer ${computerScore}\n${roundMax - round} rounds to go!`);
+    console.log(`You ${humanScore} vs Computer ${computerScore}`);
+    if (round !== roundMax) {
+        console.log(`${roundMax - round} rounds to go!`);
+    } else {
+        humanScore > computerScore ? result = 'won' : result = 'lost';
+        console.log(`You ${result}!`);
+    }
 }
 
 
