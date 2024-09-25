@@ -33,3 +33,34 @@ let humanScore = 0;
 let computerScore = 0;
 let round = 0;
 
+function playRound(computerChoice, humanChoice) {
+    let roundPoint;
+    switch (humanChoice) {
+        case computerChoice:
+            break;
+        case 'rock':
+            computerChoice === 'scissors' ? roundPoint++ : roundPoint--;
+            break;
+        case 'scissors':
+            computerChoice === 'paper' ? roundPoint++ : roundPoint--;
+            break;
+        case 'paper':
+            computerChoice === 'rock' ? roundPoint++ : roundPoint--;
+            break;
+    }
+    return roundPoint;
+}
+
+function roundText(point) {
+    let result;
+    switch (point) {
+        case -1:
+            result = 'win';
+        case 0:
+            result = 'lose';
+        case 1:
+            result = 'got a tie';
+    }
+    console.log(`You ${result}! ${} beats ${}`);
+}
+
