@@ -33,6 +33,8 @@ function verifyInput() {
 function playRound() {
     let roundPoint = gameLogic();
     roundText(roundPoint);
+    scoreRound(roundPoint);
+
 }
 // rock-paper-scissors logic game
 function gameLogic() {
@@ -67,6 +69,17 @@ function roundText(point) {
             break;
     }
     console.log(`You ${result}! \${} beats \${}`);
+}
+// storing round score
+function scoreRound(point) {
+    if (point === 1) {
+        humanScore++;
+    } else if (point === -1) {
+        computerScore++;
+    } else {
+        return;
+    }
+    round++;
 }
 
 
