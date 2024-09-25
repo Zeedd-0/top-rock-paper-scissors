@@ -31,7 +31,7 @@ function verifyInput() {
 
 // play round
 function playRound(computerChoice, humanChoice) {
-    let roundPoint;
+    let roundPoint = 0;
     switch (humanChoice) {
         case computerChoice:
             break;
@@ -51,17 +51,17 @@ function playRound(computerChoice, humanChoice) {
 function roundText(point) {
     let result;
     switch (point) {
-        case -1:
+        case 1:
             result = 'win';
             break;
-        case 0:
+        case -1:
             result = 'lose';
             break;
-        case 1:
+        case 0:
             result = 'got a tie';
             break;
     }
-    console.log(`You ${result}! ${} beats ${}`);
+    console.log(`You ${result}! \${} beats \${}`);
 }
 
 
