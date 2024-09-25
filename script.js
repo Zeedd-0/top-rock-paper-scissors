@@ -30,7 +30,12 @@ function verifyInput() {
 
 
 // play round
-function playRound(computerChoice, humanChoice) {
+function playRound() {
+    let roundPoint = gameLogic();
+    roundText(roundPoint);
+}
+// rock-paper-scissors logic game
+function gameLogic() {
     let roundPoint = 0;
     switch (humanChoice) {
         case computerChoice:
