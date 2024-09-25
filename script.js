@@ -28,11 +28,8 @@ function verifyInput() {
     return input;
 }
 
-// ----------------------------------------------------------------//
-let humanScore = 0;
-let computerScore = 0;
-let round = 0;
 
+// play round
 function playRound(computerChoice, humanChoice) {
     let roundPoint;
     switch (humanChoice) {
@@ -50,17 +47,27 @@ function playRound(computerChoice, humanChoice) {
     }
     return roundPoint;
 }
-
+// display round result
 function roundText(point) {
     let result;
     switch (point) {
         case -1:
             result = 'win';
+            break;
         case 0:
             result = 'lose';
+            break;
         case 1:
             result = 'got a tie';
+            break;
     }
     console.log(`You ${result}! ${} beats ${}`);
 }
 
+
+// ----------------------------------------------------------------//
+let computerChoice = getComputerChoice();
+let humanChoice = getHumanChoice();
+let humanScore = 0;
+let computerScore = 0;
+let round = 0;
