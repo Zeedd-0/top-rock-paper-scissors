@@ -18,7 +18,7 @@ function getHumanChoice() {
     let choice = verifyInput();
     return choice;
 }
-// teste human input and return it if valid
+// test human input and return it if valid
 function verifyInput() {
     let keepGoing = 1;
     while (keepGoing) {
@@ -27,3 +27,9 @@ function verifyInput() {
     }
     return input;
 }
+
+// ----------------------------------------------------------------//
+let humanScore = 0;
+let computerScore = 0;
+let round = 0;
+
