@@ -88,6 +88,20 @@ function scoreRound(point) {
 }
 
 
+// play game with roundMAx rounds
+function playGame() {
+    if (round < 5) {
+        playRound();
+    } else {
+        round = 0;
+        humanScore = 0;
+        computerScore = 0;
+        alert('New game started!');
+        playRound();
+    };
+}
+
+
 // ----------------------------------------------------------------//
 let computerChoice = getComputerChoice();
 let humanChoice = getHumanChoice();
