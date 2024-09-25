@@ -14,7 +14,7 @@ on user interface
 skills:
 js
 . function declaration and calling (none expression or arrow)
-. short-break
+. short-circuit
 . conditional if
 . conditional switch
 . ternary conditional
