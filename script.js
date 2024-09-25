@@ -34,7 +34,6 @@ function playRound() {
     let roundPoint = gameLogic();
     roundText(roundPoint);
     scoreRound(roundPoint);
-
 }
 // rock-paper-scissors logic game
 function gameLogic() {
@@ -57,18 +56,23 @@ function gameLogic() {
 // display round result
 function roundText(point) {
     let result;
+    let play;
     switch (point) {
         case 1:
             result = 'win';
+            play = 'beats';
             break;
         case -1:
             result = 'lose';
-            break;
+            play = 'does not beat'
+            return;
         case 0:
-            result = 'got a tie';
-            break;
+            result = 'tie';
+            play = 'is equal to';
+            console.log(`It is a ${result}! ${humanChoice} ${play} ${computerChoice}!`);
+            return;
     }
-    console.log(`You ${result}! \${} beats \${}`);
+    console.log(`You ${result}! ${humanChoice} ${play} ${computerChoice}!`);
 }
 // storing round score
 function scoreRound(point) {
@@ -80,6 +84,7 @@ function scoreRound(point) {
         return;
     }
     round++;
+    console.log(`You ${humanScore} vs Computer ${computerScore}\n${roundMax - round} games to go!`);
 }
 
 
@@ -89,3 +94,4 @@ let humanChoice = getHumanChoice();
 let humanScore = 0;
 let computerScore = 0;
 let round = 0;
+let roundMax = 5;
