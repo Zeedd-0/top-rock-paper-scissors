@@ -1,6 +1,10 @@
 // get computer choice by random and return it
 function getComputerChoice() {
-    let choice = Math.floor((Math.random() + 0.1)* 10);
+    let choice = Math.floor((Math.random() + 0.1) * 10);
+    return translateComputerChoice(choice);
+}
+// gotta get the random number to a play
+function translateComputerChoice(choice) {
     if (choice < 10/3) {
         choice = 'rock';
     } else if (choice < 20/3) {
@@ -15,15 +19,17 @@ function getComputerChoice() {
 
 // get human choice by tested and valid input
 function getHumanChoice() {
-    let choice = verifyInput();
-    return choice;
+    return verifyHumanChoice();
 }
 // test human input and return it if valid
-function verifyInput() {
+function verifyHumanChoice() {
     let keepGoing = 1;
     while (keepGoing) {
-        input = prompt('What is your play?\n- rock\n- paper\n- scissors').toLowerCase().trim();
-        keepGoing = !(input === 'rock' || input === 'paper' || input === 'scissors' || 0);
+        input = prompt('What is your play?\n - rock\n - paper\n - scissors');
+        input = input.toLowerCase().trim();
+        if (input === 'rock' || input === 'paper' || input === 'scissors') {
+            keepGoing = 0;
+        }
     }
     return input;
 }
@@ -34,8 +40,9 @@ function playRound() {
     let computerChoice = getComputerChoice();
     let humanChoice = getHumanChoice();
     let roundPoint = gameLogic(computerChoice, humanChoice);
-    roundText(computerChoice, humanChoice, roundPoint);
+    roundResultText(computerChoice, humanChoice, roundPoint);
     scoreRound(roundPoint);
+    roundSummaryText();
 }
 // rock-paper-scissors logic game
 function gameLogic(computerChoice, humanChoice) {
@@ -56,9 +63,10 @@ function gameLogic(computerChoice, humanChoice) {
     return roundPoint;
 }
 // display round result
-function roundText(computerChoice, humanChoice, point) {
+function roundResultText(computerChoice, humanChoice, point) {
     let result;
     let play;
+    humanChoice = humanChoice.split('')[0].toUpperCase() + humanChoice.slice(1, humanChoice.length); 
     switch (point) {
         case 1:
             result = 'win';
@@ -71,10 +79,10 @@ function roundText(computerChoice, humanChoice, point) {
         case 0:
             result = 'tie';
             play = 'is equal to';
-            console.log(`It is a ${result}! ${humanChoice.split('')[0].toUpperCase() + humanChoice.slice(1, humanChoice.length)} ${play} ${computerChoice}!`);
+            console.log(`It is a ${result}! ${humanChoice} ${play} ${computerChoice}!`);
             return;
     }
-    console.log(`You ${result}! ${humanChoice.split('')[0].toUpperCase() + humanChoice.slice(1, humanChoice.length)} ${play} ${computerChoice}!`);
+    console.log(`You ${result}! ${humanChoice} ${play} ${computerChoice}!`);
 }
 // storing round score
 function scoreRound(point) {
@@ -88,6 +96,9 @@ function scoreRound(point) {
     }
     round++;
     console.log(`You ${humanScore} vs Computer ${computerScore}`);
+}
+// round summary text
+function roundSummaryText(){
     if (round !== roundMax) {
         console.log(`${roundMax - round} rounds to go!`);
     } else {
