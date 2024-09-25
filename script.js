@@ -31,12 +31,14 @@ function verifyInput() {
 
 // play round
 function playRound() {
-    let roundPoint = gameLogic();
-    roundText(roundPoint);
+    let computerChoice = getComputerChoice();
+    let humanChoice = getHumanChoice();
+    let roundPoint = gameLogic(computerChoice, humanChoice);
+    roundText(computerChoice, humanChoice, roundPoint);
     scoreRound(roundPoint);
 }
 // rock-paper-scissors logic game
-function gameLogic() {
+function gameLogic(computerChoice, humanChoice) {
     let roundPoint = 0;
     switch (humanChoice) {
         case computerChoice:
@@ -54,7 +56,7 @@ function gameLogic() {
     return roundPoint;
 }
 // display round result
-function roundText(point) {
+function roundText(computerChoice, humanChoice, point) {
     let result;
     let play;
     switch (point) {
@@ -65,14 +67,14 @@ function roundText(point) {
         case -1:
             result = 'lose';
             play = 'does not beat'
-            return;
+            break;
         case 0:
             result = 'tie';
             play = 'is equal to';
             console.log(`It is a ${result}! ${humanChoice} ${play} ${computerChoice}!`);
             return;
     }
-    console.log(`You ${result}! ${humanChoice} ${play} ${computerChoice}!`);
+    console.log(`You ${result}! ${humanChoice.split('')[0].toUpperCase() + humanChoice.slice(1, humanChoice.length)} ${play} ${computerChoice}!`);
 }
 // storing round score
 function scoreRound(point) {
@@ -84,13 +86,13 @@ function scoreRound(point) {
         return;
     }
     round++;
-    console.log(`You ${humanScore} vs Computer ${computerScore}\n${roundMax - round} games to go!`);
+    console.log(`You ${humanScore} vs Computer ${computerScore}\n${roundMax - round} rounds to go!`);
 }
 
 
 // play game with roundMAx rounds
 function playGame() {
-    if (round < 5) {
+    if (round < roundMax) {
         playRound();
     } else {
         round = 0;
@@ -103,8 +105,8 @@ function playGame() {
 
 
 // ----------------------------------------------------------------//
-let computerChoice = getComputerChoice();
-let humanChoice = getHumanChoice();
+// let computerChoice = getComputerChoice();
+// let humanChoice = getHumanChoice();
 let humanScore = 0;
 let computerScore = 0;
 let round = 0;
