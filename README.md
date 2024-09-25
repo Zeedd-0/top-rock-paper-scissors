@@ -17,5 +17,6 @@ js
 . short-break
 . conditional if
 . conditional switch
+. ternary conditional
 . while loop
 . global and local variables
