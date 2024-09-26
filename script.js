@@ -37,8 +37,8 @@ function verifyHumanChoice() {
 
 // play round
 function playRound() {
-    let computerChoice = getComputerChoice();
-    let humanChoice = getHumanChoice();
+    computerChoice = getComputerChoice();
+    humanChoice = getHumanChoice();
     let roundPoint = gameLogic(computerChoice, humanChoice);
     roundResultText(computerChoice, humanChoice, roundPoint);
     scoreRound(roundPoint);
@@ -123,6 +123,8 @@ function playGame() {
 
 
 // ----------------------------------------------------------------//
+let computerChoice;
+let humanChoice;
 let humanScore = 0;
 let computerScore = 0;
 let round = 0;
