@@ -40,7 +40,7 @@ function playRound() {
     computerChoice = getComputerChoice();
     humanChoice = getHumanChoice();
     let roundPoint = gameLogic(computerChoice, humanChoice);
-    roundResultText(computerChoice, humanChoice, roundPoint);
+    roundResultText(roundPoint);
     scoreRound(roundPoint);
     roundSummaryText();
 }
@@ -63,7 +63,7 @@ function gameLogic(computerChoice, humanChoice) {
     return roundPoint;
 }
 // display round result
-function roundResultText(computerChoice, humanChoice, point) {
+function roundResultText(point) {
     let result;
     let play;
     humanChoice = humanChoice.split('')[0].toUpperCase() + humanChoice.slice(1, humanChoice.length); 
