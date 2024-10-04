@@ -13,35 +13,29 @@ function getComputerChoice() {
 
 
 // get human choice and test it
-function getHumanChoice() {
-        while (true) {
-            let input = prompt('What is your play?\n - rock\n - paper\n - scissors');
-            input = input.toLowerCase().trim();
-            if (hand.includes(input)) {
-                return hand.indexOf(input);
-            };
-        };
+function getHumanChoice(choice) {
+        let input = choice.toLowerCase().trim();
+        return hand.indexOf(input);
 }
 
 
 // play round
-function playRound(selection) {
+function playRound() {
     computerChoice = getComputerChoice();
-    humanChoice = selection;
-    const roundPoint = gameLogic(computerChoice, humanChoice);
+    const roundPoint = gameLogic(computerChoice);
     roundResultText(roundPoint);
-    // scoreRound(roundPoint);
-    // roundSummaryText();
+    scoreRound(roundPoint);
+    roundSummaryText();
 }
 // rock-paper-scissors logic game
-function gameLogic(computerChoice, humanChoice) {
+function gameLogic(computerChoice) {
     let roundPoint = 0;
 
     if (computerChoice === humanChoice) {
     } else {
         // hand[x] and hands[y].win/lose are names: (rock, paper, scissor)
-        // hands[choice].win is over what choice wins
-        // hands[choice].lose is to what choice loses
+        // hands[choice].win is what choice wins over
+        // hands[choice].lose is what choice loses to
         (hand[humanChoice] === hands[computerChoice].win) ? roundPoint-- : roundPoint++;
     };
     return roundPoint;
@@ -116,9 +110,8 @@ selections.forEach(selection => {
 });
 
 function select(e) {
-    console.log(e.target.innerText);
-    humanChoice = hand.indexOf(e.target.innerText)
-    playRound(humanChoice);
+    humanChoice = getHumanChoice(e.target.innerText)
+    playRound();
 };
 
 // ----------------------------------------------------------------//
