@@ -37,8 +37,8 @@ function playRound() {
 function gameLogic(computerChoice, humanChoice) {
     let roundPoint = 0;
 
-    if (computerChoice === humanChoice) {}
-    else {
+    if (computerChoice === humanChoice) {
+    } else {
         // hand[x] and hands[y].win/lose are names: (rock, paper, scissor)
         // hands[choice].win is over what choice wins
         // hands[choice].lose is to what choice loses
@@ -48,27 +48,44 @@ function gameLogic(computerChoice, humanChoice) {
 }
 
 // display round result
-function roundResultText(point) {
+function roundResultText(roundPoint) {
     let result;
     let play;
-    humanChoice = humanChoice.split('')[0].toUpperCase() + humanChoice.slice(1, humanChoice.length); 
-    switch (point) {
-        case 1:
+    humanChoice = hand[humanChoice][0].toUpperCase() + hand[humanChoice].slice(1); 
+    computerChoice = hand[computerChoice].toLowerCase()
+    
+    if (roundPoint === 0) {
+        console.log(`It is a tie! ${humanChoice} equals ${computerChoice}.`);
+    } else {
+        if (roundPoint === 1) {
             result = 'win';
             play = 'beats';
-            break;
-        case -1:
+        } else {
             result = 'lose';
-            play = 'does not beat'
-            break;
-        case 0:
-            result = 'tie';
-            play = 'is equal to';
-            console.log(`It is a ${result}! ${humanChoice} ${play} ${computerChoice}!`);
-            return;
-    }
-    console.log(`You ${result}! ${humanChoice} ${play} ${computerChoice}!`);
+            play = 'loses to';
+        };
+        console.log(`You ${result}! ${humanChoice} ${play} ${computerChoice}!`);
+    };
 }
+
+
+    // switch (point) {
+    //     case 1:
+    //         result = 'win';
+    //         play = 'beats';
+    //         break;
+    //     case -1:
+    //         result = 'lose';
+    //         play = 'does not beat'
+    //         break;
+    //     case 0:
+    //         result = 'tie';
+    //         play = 'is equal to';
+    //         console.log(`It is a ${result}! ${humanChoice} ${play} ${computerChoice}!`);
+    //         return;
+    // }
+    // console.log(`You ${result}! ${humanChoice} ${play} ${computerChoice}!`);
+// }
 // storing round score
 function scoreRound(point) {
     let result;
@@ -108,8 +125,8 @@ function playGame() {
 
 
 // ----------------------------------------------------------------//
-let computerChoice;
-let humanChoice;
+let computerChoice = 0;
+let humanChoice = 0;
 let humanScore = 0;
 let computerScore = 0;
 let round = 0;
