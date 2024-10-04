@@ -1,0 +1,148 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+}
+
+main {
+    /* background-color: pink; */
+    height: max(85vh, 520px);
+    width: min(80vw, 700px);
+    /* horizontaly and vertically align */
+    margin: auto;
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+}
+
+
+/* ---------------------------- */
+/* OVERALL CLASS */
+/* ---------------------------- */
+.flex {
+    display: flex;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.align-center{
+    align-items: center;
+}
+
+
+/* ---------------------------- */
+/* MAIN SECTION */
+/* ---------------------------- */
+#main-section {
+    background-color: rgb(226, 221, 221);
+    height: 100%;
+    border-radius: 15px;
+    position: relative;
+}
+
+
+/* ---------------------------- */
+/* BACKGROUND SECTION */
+/* ---------------------------- */
+#background-section {
+    /* background-color: aqua; */
+    position: relative;
+    top: 38%;
+}
+
+#point-div {
+    /* border: 1px solid black; */
+    width: 95%;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+#text {
+    /* border: 1px solid black; */
+    font-weight: bold;
+    max-width: 450px;
+    text-align: center;
+    flex: 1;
+}
+
+#computer {
+    align-self: flex-start;
+}
+
+#human {
+    align-self: flex-end;
+}
+
+.point-container {
+    background-color: rgb(27, 27, 27);
+    height: 20px;
+    width: 115px;
+    border-radius: 20px;
+    justify-content: space-around;
+}
+
+.point-container > div {
+    background-color: rgb(131, 131, 131);
+    height: 13px;
+    width: 13px;
+    border-radius: 50%;
+}
+
+
+/* ---------------------------- */
+/* FOREGROUND SECTION */
+/* ---------------------------- */
+#foreground-section {
+    /* background-color: rgba(255, 255, 255, 0.4); */
+    height: calc(100% - 20px);
+    width: calc(100% - 20px);
+    margin: 10px;
+    position: absolute;
+    justify-content: space-between;
+}
+
+#foreground-section > div:nth-of-type(1) {
+    background-color: rgba(0, 0 , 255, 0.7);
+    height: 36%;
+    border-radius: 12px;
+}
+
+#foreground-section > div:nth-of-type(2) {
+    background-color: rgba(0, 255 , 0, 0.7);
+    height: 48%;
+    border-radius: 12px;
+}
+
+#computerPlay {
+    justify-content: center;
+    align-items: center;
+}
+
+#humanPlay {
+    justify-content: center;
+    align-items: center;
+    gap: 20px
+}
+
+.choice {
+    height: 125px;
+    width: 100px;
+    background-color: green;
+    border-radius: 5px;
+    border: none;
+    text-align: center;
+    line-height: 125px;
+}
+
+#humanPlay > button {
+    height: calc(125px * 1.2);
+    width: calc(100px * 1.2);
+    line-height: calc(125px * 1.2);
+}
