@@ -13,18 +13,7 @@ function getComputerChoice() {
 
 
 // get human choice and test it
-function getHumanChoice(automatic = 1) {
-    if (automatic) {
-        const randomN = Math.random();
-        switch (randomN) {
-            case (Math.min(randomN, 1 / 3)):
-                return 0;
-            case (Math.min(randomN, 2 / 3)):
-                return 1;
-            default:
-                return 2;
-        };            
-    } else {
+function getHumanChoice() {
         while (true) {
             let input = prompt('What is your play?\n - rock\n - paper\n - scissors');
             input = input.toLowerCase().trim();
@@ -32,18 +21,17 @@ function getHumanChoice(automatic = 1) {
                 return hand.indexOf(input);
             };
         };
-    }
 }
 
 
 // play round
-function playRound() {
+function playRound(selection) {
     computerChoice = getComputerChoice();
-    humanChoice = getComputerChoice()// getHumanChoice();
+    humanChoice = selection;
     const roundPoint = gameLogic(computerChoice, humanChoice);
     roundResultText(roundPoint);
-    scoreRound(roundPoint);
-    roundSummaryText();
+    // scoreRound(roundPoint);
+    // roundSummaryText();
 }
 // rock-paper-scissors logic game
 function gameLogic(computerChoice, humanChoice) {
@@ -118,6 +106,20 @@ function playGame() {
     };
 }
 
+
+// ----------------------------------------------------------------//
+
+
+const selections = document.querySelectorAll('button');
+selections.forEach(selection => {
+    selection.addEventListener('click', select);
+});
+
+function select(e) {
+    console.log(e.target.innerText);
+    humanChoice = hand.indexOf(e.target.innerText)
+    playRound(humanChoice);
+};
 
 // ----------------------------------------------------------------//
 let computerChoice = 0;
