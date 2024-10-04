@@ -119,8 +119,7 @@ let computerChoice = 0;
 let humanScore = 0;
 let computerScore = 0;
 let humanChoice = 0;
-let roundMax = 5;
-let requiredWins = Math.floor(roundMax / 2) + 1;
+const requiredWins = 5;
 const hands = [
     {hand: 'rock', win: 'scissor', lose: 'paper'},
     {hand: 'paper', win: 'rock', lose: 'scissor'},
