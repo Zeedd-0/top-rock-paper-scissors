@@ -29,9 +29,9 @@ function verifyHumanChoice() {
         input = input.toLowerCase().trim();
         if (input === 'rock' || input === 'paper' || input === 'scissors') {
             keepGoing = 0;
-        }
-    }
-    return input;
+            return input;
+        };
+    };
 }
 
 
@@ -129,3 +129,8 @@ let humanScore = 0;
 let computerScore = 0;
 let round = 0;
 let roundMax = 5;
+const hand = [
+    {hand: 'rock', win: 'scissor', lose: 'paper'},
+    {hand: 'scissor', win: 'paper', lose: 'rock'},
+    {hand: 'paper', win: 'rock', lose: 'scissor'}
+]
