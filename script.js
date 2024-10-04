@@ -1,6 +1,6 @@
 // get computer choice by random and return it as play
 function getComputerChoice() {
-    let randomN = Math.random();
+    const randomN = Math.random();
     switch (randomN) {
         case (Math.min(randomN, 1 / 3)):
             return 0;
@@ -12,19 +12,13 @@ function getComputerChoice() {
 }
 
 
-// get human choice by tested and valid input
+// get human choice and test it
 function getHumanChoice() {
-    return verifyHumanChoice();
-}
-// test human input and return it if valid
-function verifyHumanChoice() {
-    let keepGoing = 1;
-    while (keepGoing) {
-        input = prompt('What is your play?\n - rock\n - paper\n - scissors');
+    while (true) {
+        let input = prompt('What is your play?\n - rock\n - paper\n - scissors');
         input = input.toLowerCase().trim();
         if (hand.includes(input)) {
-            keepGoing = 0;
-            return input;
+            return hand.indexOf(input);
         };
     };
 }
