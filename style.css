@@ -145,4 +145,18 @@ main {
     height: calc(125px * 1.2);
     width: calc(100px * 1.2);
     line-height: calc(125px * 1.2);
+    transition: all 0.5s;
+}
+
+/* ---------------------------- */
+/* ON INTERATION */
+/* ---------------------------- */
+/* ---------------------------- */
+/* FOREGROUND SECTION */
+/* ---------------------------- */
+
+.selected {
+    background-color: greenyellow;
+    box-shadow: 0px 0px 5px 2px white;
+    transform: scale(1.05);
 }
