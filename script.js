@@ -13,25 +13,37 @@ function getComputerChoice() {
 
 
 // get human choice and test it
-function getHumanChoice() {
-    while (true) {
-        let input = prompt('What is your play?\n - rock\n - paper\n - scissors');
-        input = input.toLowerCase().trim();
-        if (hand.includes(input)) {
-            return hand.indexOf(input);
+function getHumanChoice(automatic = 1) {
+    if (automatic) {
+        const randomN = Math.random();
+        switch (randomN) {
+            case (Math.min(randomN, 1 / 3)):
+                return 0;
+            case (Math.min(randomN, 2 / 3)):
+                return 1;
+            default:
+                return 2;
+        };            
+    } else {
+        while (true) {
+            let input = prompt('What is your play?\n - rock\n - paper\n - scissors');
+            input = input.toLowerCase().trim();
+            if (hand.includes(input)) {
+                return hand.indexOf(input);
+            };
         };
-    };
+    }
 }
 
 
 // play round
 function playRound() {
     computerChoice = getComputerChoice();
-    humanChoice = getHumanChoice();
+    humanChoice = getComputerChoice()// getHumanChoice();
     const roundPoint = gameLogic(computerChoice, humanChoice);
     roundResultText(roundPoint);
-    // scoreRound(roundPoint);
-    // roundSummaryText();
+    scoreRound(roundPoint);
+    roundSummaryText();
 }
 // rock-paper-scissors logic game
 function gameLogic(computerChoice, humanChoice) {
@@ -53,9 +65,9 @@ function roundResultText(roundPoint) {
     let play;
     humanChoice = hand[humanChoice][0].toUpperCase() + hand[humanChoice].slice(1); 
     computerChoice = hand[computerChoice].toLowerCase()
-    
+
     if (roundPoint === 0) {
-        console.log(`It is a tie! ${humanChoice} equals ${computerChoice}.`);
+        console.log(`It is a tie! ${humanChoice} equals to ${computerChoice}.`);
     } else {
         if (roundPoint === 1) {
             result = 'win';
@@ -69,40 +81,24 @@ function roundResultText(roundPoint) {
 }
 
 
-    // switch (point) {
-    //     case 1:
-    //         result = 'win';
-    //         play = 'beats';
-    //         break;
-    //     case -1:
-    //         result = 'lose';
-    //         play = 'does not beat'
-    //         break;
-    //     case 0:
-    //         result = 'tie';
-    //         play = 'is equal to';
-    //         console.log(`It is a ${result}! ${humanChoice} ${play} ${computerChoice}!`);
-    //         return;
-    // }
-    // console.log(`You ${result}! ${humanChoice} ${play} ${computerChoice}!`);
-// }
 // storing round score
-function scoreRound(point) {
-    let result;
-    if (point === 1) {
-        humanScore++;
-    } else if (point === -1) {
-        computerScore++;
+function scoreRound(roundPoint) {
+    if (roundPoint === 0) {
     } else {
-        return;
+        if (roundPoint === 1) {
+            humanScore++;
+        } else {
+            computerScore++;
+        }
+        console.log(`You ${humanScore} vs Computer ${computerScore}`);
     }
-    round++;
-    console.log(`You ${humanScore} vs Computer ${computerScore}`);
 }
+
 // round summary text
 function roundSummaryText(){
-    if (round !== roundMax) {
-        console.log(`${roundMax - round} rounds to go!`);
+    let result;
+    if (Math.max(humanScore, computerScore) < requiredWins) {
+        console.log(`${requiredWins - humanScore} rounds to win!`);
     } else {
         humanScore > computerScore ? result = 'won' : result = 'lost';
         console.log(`You ${result}!`);
@@ -112,13 +108,12 @@ function roundSummaryText(){
 
 // play game with roundMAx rounds
 function playGame() {
-    if (round < roundMax) {
+    if (Math.max(humanScore, computerScore) < requiredWins) {
         playRound();
     } else {
-        round = 0;
         humanScore = 0;
         computerScore = 0;
-        alert('New game started!');
+        console.log('New game started!')
         playRound();
     };
 }
@@ -126,11 +121,11 @@ function playGame() {
 
 // ----------------------------------------------------------------//
 let computerChoice = 0;
-let humanChoice = 0;
 let humanScore = 0;
 let computerScore = 0;
-let round = 0;
+let humanChoice = 0;
 let roundMax = 5;
+let requiredWins = Math.floor(roundMax / 2) + 1;
 const hands = [
     {hand: 'rock', win: 'scissor', lose: 'paper'},
     {hand: 'paper', win: 'rock', lose: 'scissor'},
