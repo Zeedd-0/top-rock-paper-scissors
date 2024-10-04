@@ -28,34 +28,25 @@ function getHumanChoice() {
 function playRound() {
     computerChoice = getComputerChoice();
     humanChoice = getHumanChoice();
-    let roundPoint = gameLogic(computerChoice, humanChoice);
+    const roundPoint = gameLogic(computerChoice, humanChoice);
     roundResultText(roundPoint);
-    scoreRound(roundPoint);
-    roundSummaryText();
+    // scoreRound(roundPoint);
+    // roundSummaryText();
 }
 // rock-paper-scissors logic game
 function gameLogic(computerChoice, humanChoice) {
     let roundPoint = 0;
-    // switch (humanChoice) {
-    //     case computerChoice:
-    //         break;
-    //     case hand[0]:
-    //         computerChoice === 'scissors' ? roundPoint++ : roundPoint--;
-    //         break;
-    //     case hand[1]:
-    //         computerChoice === 'paper' ? roundPoint++ : roundPoint--;
-    //         break;
-    //     case hand[2]:
-    //         computerChoice === 'rock' ? roundPoint++ : roundPoint--;
-    //         break;
-    // }
-    if (humanChoice !== computerChoice) {
-        let compIndex = hand.indexOf(computerChoice);
-        (humanChoice === hands[compIndex].win)
-        
+
+    if (computerChoice === humanChoice) {}
+    else {
+        // hand[x] and hands[y].win/lose are names: (rock, paper, scissor)
+        // hands[choice].win is over what choice wins
+        // hands[choice].lose is to what choice loses
+        (hand[humanChoice] === hands[computerChoice].win) ? roundPoint-- : roundPoint++;
     };
     return roundPoint;
 }
+
 // display round result
 function roundResultText(point) {
     let result;
@@ -125,7 +116,7 @@ let round = 0;
 let roundMax = 5;
 const hands = [
     {hand: 'rock', win: 'scissor', lose: 'paper'},
-    {hand: 'scissor', win: 'paper', lose: 'rock'},
-    {hand: 'paper', win: 'rock', lose: 'scissor'}
+    {hand: 'paper', win: 'rock', lose: 'scissor'},
+    {hand: 'scissor', win: 'paper', lose: 'rock'}
 ]
-const hand = ['rock', 'scissor', 'paper'];
+const hand = ['rock', 'paper', 'scissor'];
