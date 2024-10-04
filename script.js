@@ -106,13 +106,27 @@ function playGame() {
 
 const selections = document.querySelectorAll('button');
 selections.forEach(selection => {
+    selection.addEventListener('click', selectStyle)
     selection.addEventListener('click', select);
 });
 
+// iterartions for choice selection
 function select(e) {
     humanChoice = getHumanChoice(e.target.innerText)
     playRound();
 };
+function selectStyle(e) {
+    e.target.classList.add('selected');
+}
+
+
+const test = document.querySelectorAll('#computer div');
+function testi() {
+    test.forEach(sphere => {
+    sphere.style.backgroundColor = 'red';
+});
+}
+
 
 // ----------------------------------------------------------------//
 let computerChoice = 0;
