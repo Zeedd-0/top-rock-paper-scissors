@@ -13,7 +13,6 @@ function getComputerChoice() {
     };
 }
 
-
 // get human choice
 function getHumanChoice(choice) {
         let input = choice.toLowerCase().trim();
@@ -28,6 +27,7 @@ function playRound() {
     scoreRound(ROUND_POINT);
     roundSummaryText();
 }
+
 // rock-paper-scissors logic game
 function gameLogic() {
     let roundPoint = 0;
@@ -41,6 +41,7 @@ function gameLogic() {
     };
     return roundPoint;
 }
+
 
 // display round result
 function roundResultText(roundPoint) {
@@ -59,7 +60,7 @@ function roundResultText(roundPoint) {
             result = `You lose! ${humanChoice} loses to ${computerChoice}!`;
             break;
     };
-    RESULT_TEXT.innerText = result;
+    displayResultText(result);
 };
 
 
@@ -136,8 +137,8 @@ function computerStyle() {
 };
 
 // result text
-function resultText() {
-    
+function displayResultText(text) {
+    RESULT_TEXT.innerText = text;
 }
 
 
