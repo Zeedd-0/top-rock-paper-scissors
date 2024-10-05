@@ -44,7 +44,7 @@ function gameLogic() {
 }
 
 
-// display round result
+// display round result text
 function roundResultText(roundPoint) {
     let result = '';
     humanChoice = HAND[humanChoice][0].toUpperCase() + HAND[humanChoice].slice(1); 
@@ -61,7 +61,7 @@ function roundResultText(roundPoint) {
             result = `You lose! ${humanChoice} loses to ${computerChoice}!`;
             break;
     };
-    displayResultText(result);
+    RESULT_TEXT.innerText = result;
 };
 
 
@@ -120,7 +120,7 @@ SELECTIONS.forEach(selection => {
             computerStyle();
         }, 200);
         setTimeout(() => {
-            playRound();
+            playRound(); // <<<<<<<<<<<<<<<<<<<<<< PLAY ROUND
         }, 1600);
     });
 });
@@ -137,11 +137,6 @@ function computerStyle() {
         choice.innerText = HAND[computerChoice];
     }, 800);
 };
-
-// result text
-function displayResultText(text) {
-    RESULT_TEXT.innerText = text;
-}
 
 // round per round poiting
 function getScore() {
@@ -172,3 +167,11 @@ const HANDS = [
     {hand: 'scissor', win: 'paper', lose: 'rock'}
 ]
 const HAND = ['rock', 'paper', 'scissor'];
+
+
+// GOTTA DEFINE HOW I GONNA DO THE GAME OF ROUNDS
+// RESET STYLES (REMOVE CLASS OR TOGGLE) AFTER EACH GAME
+// HOW GONNA SHOW GAME (SET OF ROUNDS) WON OR LOSE
+// PREVENT CHOSING OTHER HAND (BUTTON) BEFORE GAME ENDING
+// MORE DEFAULT STYLING
+// MORE TRANSITION AND INTERACTION EFFECTS
