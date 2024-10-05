@@ -85,13 +85,21 @@ main {
     height: 20px;
     width: 115px;
     border-radius: 20px;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 
 .point-container > div {
+    height: 13px;
+    width: 13px;
+    border-radius: 50%;
+    display: flex;
+}
+
+.point-container > div > div {
     background-color: rgb(131, 131, 131);
     height: 5px;
     width: 5px;
+    margin: auto;
     border-radius: 50%;
 }
 
@@ -109,13 +117,13 @@ main {
 }
 
 #foreground-section > div:nth-of-type(1) {
-    background-color: rgba(0, 0 , 255, 0.7);
+    /* background-color: rgba(0, 0 , 255, 0.7); */
     height: 36%;
     border-radius: 12px;
 }
 
 #foreground-section > div:nth-of-type(2) {
-    background-color: rgba(0, 255 , 0, 0.7);
+    /* background-color: rgba(0, 255 , 0, 0.7); */
     height: 48%;
     border-radius: 12px;
 }
@@ -173,15 +181,12 @@ main {
     background-color: rgb(54, 141, 240);
 }
 
-.point {
-    height: 13px;
-    width: 13px;
+#human .human-point,
+#human .human-point * {
+    background-color: rgba(0, 255, 0, 1);
 }
 
-.human-point {
-    background-color: blue;
-}
-
-.computer-point {
-    background-color: red;
+#computer .computer-point,
+#computer .computer-point * {
+    background-color: rgba(255, 255, 255, 1);
 }
