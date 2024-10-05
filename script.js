@@ -99,6 +99,7 @@ function playGame() {
         humanScore = 0;
         computerScore = 0;
         console.log('New game started!')
+        // AQUI AQUI AQUI AQUI AQUI AQUI AQUI AQUI AQUI AQUI 
         playRound();
     };
 }
@@ -107,10 +108,18 @@ function playGame() {
 // ----------------------------------------------------------------//
 // INTERACTION
 // global variables
-const SELECTIONS = document.querySelectorAll('button');
+const COMPUTER_BOARD = document.querySelectorAll('#computer > div')
+const HUMAN_BOARD = document.querySelectorAll('#human > div')
+const SELECTIONS = document.querySelectorAll('#humanPlay > button');
 const RESULT_TEXT = document.querySelector('#text');
+const PLAY_BTN = document.querySelector('#play-div');
+const GAME_PAGE = document.querySelector('#frontpage-section');
 
 // events
+// PLAY_BTN.addEventListener('click', (e) => {
+//     GAME_PAGE.classList.add('invisible');
+// })
+
 SELECTIONS.forEach(selection => {
     selection.addEventListener('click', (e) => {
         selectStyle(e);
@@ -124,6 +133,11 @@ SELECTIONS.forEach(selection => {
         }, 1600);
     });
 });
+
+RESULT_TEXT.addEventListener('change', () => {
+    console.log(RESULT_TEXT.innerText);
+
+})
 
 // choice selection and computer choice
 function selectStyle(e) {
@@ -158,20 +172,25 @@ let computerChoice = 0;
 let humanScore = 0;
 let computerScore = 0;
 let humanChoice = 0;
-const COMPUTER_BOARD = document.querySelectorAll('#computer > div')
-const HUMAN_BOARD = document.querySelectorAll('#human > div')
 const REQUIRED_WINS = 5;
 const HANDS = [
     {hand: 'rock', win: 'scissor', lose: 'paper'},
     {hand: 'paper', win: 'rock', lose: 'scissor'},
     {hand: 'scissor', win: 'paper', lose: 'rock'}
 ]
-const HAND = ['rock', 'paper', 'scissor'];
+const HAND = [];
+window.addEventListener('load', () => {
+    HANDS.forEach(hand => {
+        HAND.push(hand.hand);
+    });
+})
 
-
-// GOTTA DEFINE HOW I GONNA DO THE GAME OF ROUNDS
+// o GOTTA DEFINE HOW I GONNA DO THE GAME OF ROUNDS
+// RESET STYLES (REMOVE CLASS OR TOGGLE) AFTER EACH ROUND
 // RESET STYLES (REMOVE CLASS OR TOGGLE) AFTER EACH GAME
 // HOW GONNA SHOW GAME (SET OF ROUNDS) WON OR LOSE
 // PREVENT CHOSING OTHER HAND (BUTTON) BEFORE GAME ENDING
-// MORE DEFAULT STYLING
-// MORE TRANSITION AND INTERACTION EFFECTS
+// MORE DEFAULT STYLING (GAME BOARD)
+// MORE TRANSITION AND INTERACTION EFFECTS (GAME BOARD)
+// MORE DEFAULT STYLING (GAME PAGE)
+// MORE TRANSITION AND INTERACTION EFFECTS (GAME PAGE)
