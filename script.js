@@ -59,7 +59,7 @@ function roundResultText(roundPoint) {
             result = `You lose! ${humanChoice} loses to ${computerChoice}!`;
             break;
     };
-    console.log(result);
+    RESULT_TEXT.innerText = result;
 };
 
 
@@ -105,7 +105,7 @@ function playGame() {
 // INTERACTION
 // global variables
 const SELECTIONS = document.querySelectorAll('button');
-const TEXT = document.querySelector('#text');
+const RESULT_TEXT = document.querySelector('#text');
 
 // events
 SELECTIONS.forEach(selection => {
