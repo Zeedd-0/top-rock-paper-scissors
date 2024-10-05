@@ -14,7 +14,7 @@ function getComputerChoice() {
 }
 
 
-// get human choice and test it
+// get human choice
 function getHumanChoice(choice) {
         let input = choice.toLowerCase().trim();
         return HAND.indexOf(input);
@@ -23,14 +23,13 @@ function getHumanChoice(choice) {
 
 // play round
 function playRound() {
-    computerChoice = getComputerChoice();
-    const ROUND_POINT = gameLogic(computerChoice);
+    const ROUND_POINT = gameLogic();
     roundResultText(ROUND_POINT);
     scoreRound(ROUND_POINT);
     roundSummaryText();
 }
 // rock-paper-scissors logic game
-function gameLogic(computerChoice) {
+function gameLogic() {
     let roundPoint = 0;
 
     if (computerChoice === humanChoice) {
@@ -45,24 +44,23 @@ function gameLogic(computerChoice) {
 
 // display round result
 function roundResultText(roundPoint) {
-    let result;
-    let play;
+    let result = '';
     humanChoice = HAND[humanChoice][0].toUpperCase() + HAND[humanChoice].slice(1); 
     computerChoice = HAND[computerChoice].toLowerCase()
 
-    if (roundPoint === 0) {
-        console.log(`It is a tie! ${humanChoice} equals to ${computerChoice}.`);
-    } else {
-        if (roundPoint === 1) {
-            result = 'win';
-            play = 'beats';
-        } else {
-            result = 'lose';
-            play = 'loses to';
-        };
-        console.log(`You ${result}! ${humanChoice} ${play} ${computerChoice}!`);
+    switch (roundPoint) {
+        case 0:
+            result = `It is a tie! ${humanChoice} equals to ${computerChoice}.`;
+            break;
+        case 1:
+            result = `You win! ${humanChoice} beats ${computerChoice}!`;
+            break;
+        case -1:
+            result = `You lose! ${humanChoice} loses to ${computerChoice}!`;
+            break;
     };
-}
+    console.log(result);
+};
 
 
 // storing round score
@@ -104,9 +102,12 @@ function playGame() {
 
 
 // ----------------------------------------------------------------//
-// INTERACTION FUNCTIONS
-
+// INTERACTION
+// global variables
 const SELECTIONS = document.querySelectorAll('button');
+const TEXT = document.querySelector('#text');
+
+// events
 SELECTIONS.forEach(selection => {
     selection.addEventListener('click', (e) => {
         selectStyle(e);
@@ -121,7 +122,7 @@ SELECTIONS.forEach(selection => {
     });
 });
 
-// interaction for choice selection and computer choice
+// choice selection and computer choice
 function selectStyle(e) {
     e.target.classList.add('selected', 'human-choice');
 }
@@ -134,7 +135,11 @@ function computerStyle() {
     }, 800);
 };
 
-// something else
+// result text
+function resultText() {
+    
+}
+
 
 const test = document.querySelectorAll('#computer div');
 function testi() {
@@ -157,4 +162,3 @@ const HANDS = [
     {hand: 'scissor', win: 'paper', lose: 'rock'}
 ]
 const HAND = ['rock', 'paper', 'scissor'];
-const 
