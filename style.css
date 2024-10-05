@@ -90,8 +90,8 @@ main {
 
 .point-container > div {
     background-color: rgb(131, 131, 131);
-    height: 13px;
-    width: 13px;
+    height: 5px;
+    width: 5px;
     border-radius: 50%;
 }
 
@@ -161,7 +161,27 @@ main {
 }
 
 .selected {
-    background-color: greenyellow;
     box-shadow: 0px 0px 5px 2px white;
     transform: scale(1.05);
+}
+
+.human-choice {
+    background-color: greenyellow;
+}
+
+.computer-choice {
+    background-color: rgb(54, 141, 240);
+}
+
+.point {
+    height: 13px;
+    width: 13px;
+}
+
+.human-point {
+    background-color: blue;
+}
+
+.computer-point {
+    background-color: red;
 }
