@@ -1,10 +1,12 @@
+// ----------------------------------------------------------------//
+// GAME LOGIC FUNCTIONS
 // get computer choice by random and return it as play
 function getComputerChoice() {
-    const randomN = Math.random();
-    switch (randomN) {
-        case (Math.min(randomN, 1 / 3)):
+    const RANDOM_N = Math.random();
+    switch (RANDOM_N) {
+        case (Math.min(RANDOM_N, 1 / 3)):
             return 0;
-        case (Math.min(randomN, 2 / 3)):
+        case (Math.min(RANDOM_N, 2 / 3)):
             return 1;
         default:
             return 2;
@@ -15,16 +17,16 @@ function getComputerChoice() {
 // get human choice and test it
 function getHumanChoice(choice) {
         let input = choice.toLowerCase().trim();
-        return hand.indexOf(input);
+        return HAND.indexOf(input);
 }
 
 
 // play round
 function playRound() {
     computerChoice = getComputerChoice();
-    const roundPoint = gameLogic(computerChoice);
-    roundResultText(roundPoint);
-    scoreRound(roundPoint);
+    const ROUND_POINT = gameLogic(computerChoice);
+    roundResultText(ROUND_POINT);
+    scoreRound(ROUND_POINT);
     roundSummaryText();
 }
 // rock-paper-scissors logic game
@@ -33,10 +35,10 @@ function gameLogic(computerChoice) {
 
     if (computerChoice === humanChoice) {
     } else {
-        // hand[x] and hands[y].win/lose are names: (rock, paper, scissor)
-        // hands[choice].win is what choice wins over
-        // hands[choice].lose is what choice loses to
-        (hand[humanChoice] === hands[computerChoice].win) ? roundPoint-- : roundPoint++;
+        // HAND[x] and HANDS[y].win/lose are names: (rock, paper, scissor)
+        // HANDS[choice].win is what choice wins over
+        // HANDS[choice].lose is what choice loses to
+        (HAND[humanChoice] === HANDS[computerChoice].win) ? roundPoint-- : roundPoint++;
     };
     return roundPoint;
 }
@@ -45,8 +47,8 @@ function gameLogic(computerChoice) {
 function roundResultText(roundPoint) {
     let result;
     let play;
-    humanChoice = hand[humanChoice][0].toUpperCase() + hand[humanChoice].slice(1); 
-    computerChoice = hand[computerChoice].toLowerCase()
+    humanChoice = HAND[humanChoice][0].toUpperCase() + HAND[humanChoice].slice(1); 
+    computerChoice = HAND[computerChoice].toLowerCase()
 
     if (roundPoint === 0) {
         console.log(`It is a tie! ${humanChoice} equals to ${computerChoice}.`);
@@ -79,8 +81,8 @@ function scoreRound(roundPoint) {
 // round summary text
 function roundSummaryText(){
     let result;
-    if (Math.max(humanScore, computerScore) < requiredWins) {
-        console.log(`${requiredWins - humanScore} rounds to win!`);
+    if (Math.max(humanScore, computerScore) < REQUIRED_WINS) {
+        console.log(`${REQUIRED_WINS - humanScore} rounds to win!`);
     } else {
         humanScore > computerScore ? result = 'won' : result = 'lost';
         console.log(`You ${result}!`);
@@ -90,7 +92,7 @@ function roundSummaryText(){
 
 // play game with roundMAx rounds
 function playGame() {
-    if (Math.max(humanScore, computerScore) < requiredWins) {
+    if (Math.max(humanScore, computerScore) < REQUIRED_WINS) {
         playRound();
     } else {
         humanScore = 0;
@@ -102,23 +104,37 @@ function playGame() {
 
 
 // ----------------------------------------------------------------//
+// INTERACTION FUNCTIONS
 
-
-const selections = document.querySelectorAll('button');
-selections.forEach(selection => {
-    selection.addEventListener('click', selectStyle)
-    selection.addEventListener('click', select);
+const SELECTIONS = document.querySelectorAll('button');
+SELECTIONS.forEach(selection => {
+    selection.addEventListener('click', (e) => {
+        selectStyle(e);
+        humanChoice = getHumanChoice(e.target.innerText);
+        computerChoice = getComputerChoice();
+        setTimeout(() => {
+            computerStyle();
+        }, 200);
+        setTimeout(() => {
+            playRound();
+        }, 1600);
+    });
 });
 
-// iterartions for choice selection
-function select(e) {
-    humanChoice = getHumanChoice(e.target.innerText)
-    playRound();
-};
+// interaction for choice selection and computer choice
 function selectStyle(e) {
-    e.target.classList.add('selected');
+    e.target.classList.add('selected', 'human-choice');
 }
+function computerStyle() {
+    let choice = document.querySelector('#computerPlay > .choice');
+    choice.classList.add('selected');
+    setTimeout(() => {
+        choice.classList.add('computer-choice');
+        choice.innerText = HAND[computerChoice];
+    }, 800);
+};
 
+// something else
 
 const test = document.querySelectorAll('#computer div');
 function testi() {
@@ -129,14 +145,16 @@ function testi() {
 
 
 // ----------------------------------------------------------------//
+// VARIABLES GLOBAL
 let computerChoice = 0;
 let humanScore = 0;
 let computerScore = 0;
 let humanChoice = 0;
-const requiredWins = 5;
-const hands = [
+const REQUIRED_WINS = 5;
+const HANDS = [
     {hand: 'rock', win: 'scissor', lose: 'paper'},
     {hand: 'paper', win: 'rock', lose: 'scissor'},
     {hand: 'scissor', win: 'paper', lose: 'rock'}
 ]
-const hand = ['rock', 'paper', 'scissor'];
+const HAND = ['rock', 'paper', 'scissor'];
+const 
