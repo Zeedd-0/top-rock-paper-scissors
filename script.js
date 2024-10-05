@@ -24,8 +24,9 @@ function getHumanChoice(choice) {
 function playRound() {
     const ROUND_POINT = gameLogic();
     roundResultText(ROUND_POINT);
+    getScore();
     scoreRound(ROUND_POINT);
-    roundSummaryText();
+    // roundSummaryText();
 }
 
 // rock-paper-scissors logic game
@@ -64,29 +65,30 @@ function roundResultText(roundPoint) {
 };
 
 
-// storing round score
+// marking round score
 function scoreRound(roundPoint) {
-    if (roundPoint === 0) {
-    } else {
-        if (roundPoint === 1) {
-            humanScore++;
-        } else {
-            computerScore++;
-        }
-        console.log(`You ${humanScore} vs Computer ${computerScore}`);
-    }
+    switch (roundPoint) {
+        case 0:
+            break;
+        case 1:
+            HUMAN_BOARD[HUMAN_BOARD.length - humanScore - 1].classList.add('human-point');
+            break;
+        case -1:
+            COMPUTER_BOARD[computerScore].classList.add('computer-point');
+            break;
+    };
 }
 
 // round summary text
-function roundSummaryText(){
-    let result;
-    if (Math.max(humanScore, computerScore) < REQUIRED_WINS) {
-        console.log(`${REQUIRED_WINS - humanScore} rounds to win!`);
-    } else {
-        humanScore > computerScore ? result = 'won' : result = 'lost';
-        console.log(`You ${result}!`);
-    }
-}
+// function roundSummaryText(){
+//     let result;
+//     if (Math.max(humanScore, computerScore) < REQUIRED_WINS) {
+//         console.log(`${REQUIRED_WINS - humanScore} rounds to win!`);
+//     } else {
+//         humanScore > computerScore ? result = 'won' : result = 'lost';
+//         console.log(`You ${result}!`);
+//     }
+// }
 
 
 // play game with roundMAx rounds
@@ -141,6 +143,11 @@ function displayResultText(text) {
     RESULT_TEXT.innerText = text;
 }
 
+// round per round poiting
+function getScore() {
+    computerScore = document.querySelectorAll('#computer > div[class~="point"]').length
+    humanScore = document.querySelectorAll('#human > div[class~="point"]').length
+}
 
 const test = document.querySelectorAll('#computer div');
 function testi() {
@@ -156,6 +163,8 @@ let computerChoice = 0;
 let humanScore = 0;
 let computerScore = 0;
 let humanChoice = 0;
+const COMPUTER_BOARD = document.querySelectorAll('#computer > div')
+const HUMAN_BOARD = document.querySelectorAll('#human > div')
 const REQUIRED_WINS = 5;
 const HANDS = [
     {hand: 'rock', win: 'scissor', lose: 'paper'},
