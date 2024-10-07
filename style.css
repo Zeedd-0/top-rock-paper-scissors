@@ -65,8 +65,8 @@ main {
 }
 
 #text {
-    /* border: 1px solid black; */
     font-weight: bold;
+    min-height: 1.2rem;
     max-width: 450px;
     text-align: center;
     flex: 1;
@@ -198,8 +198,8 @@ main {
     align-items: flex-end;
 }
 
-.visible {
-    /* display: none; */
+.invisible {
+    display: none;
 }
 
 /* ---------------------------- */
