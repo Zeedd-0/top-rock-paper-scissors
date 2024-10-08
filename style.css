@@ -5,12 +5,12 @@
 }
 
 body {
+    background-color: whitesmoke;
     height: 100vh;
     width: 100vw;
 }
 
 main {
-    /* background-color: pink; */
     height: max(85vh, 520px);
     width: min(80vw, 700px);
     /* horizontaly and vertically align */
@@ -40,9 +40,10 @@ main {
 /* MAIN SECTION */
 /* ---------------------------- */
 #main-section {
-    background-color: rgb(112, 156, 238);
+    background-color: rgb(178, 157, 182);
     height: 100%;
     border-radius: 15px;
+    box-shadow: 0px 0px 1px 2px purple;
     position: relative;
 }
 
@@ -65,10 +66,16 @@ main {
 }
 
 #text {
+    background-color: rgb(27, 27, 27);
     font-weight: bold;
-    min-height: 1.2rem;
+    color: rgb(143, 153, 4);
+    min-height: 1.5rem;
     max-width: 450px;
-    text-align: center;
+    min-width: 350px;
+    border: 1px solid black;
+    border-radius: 25px;
+    justify-content: center;
+    align-items: center;
     flex: 1;
 }
 
@@ -144,7 +151,7 @@ main {
     width: 100px;
     background-color: rgb(94, 94, 94);
     border-radius: 5px;
-    border: none;
+    border: 1px solid rgb(145, 145, 145);
     text-align: center;
     line-height: 125px;
 }
@@ -162,13 +169,14 @@ main {
 /* FRONTPAGE SECTION */
 /* ---------------------------- */
 #frontpage-section {
-    background-color: rgba(214, 95, 95, 0.4);
+    background-color: rgba(214, 95, 95, 1);
     height: calc(100% - 0px);
     width: calc(100% - 0px);
     margin: 0px;
+    border: 1px solid black;
     border-radius: 15px;
+    box-shadow: 0px 0px 1px 10px rgba(214, 95, 95, 1);
     position: absolute;
-    /* justify-content: space-around; */
     align-items: center;
     gap: 40px;
 }
@@ -207,15 +215,27 @@ main {
 /* ON INTERATION */
 /* ---------------------------- */
 /* ---------------------------- */
+/* BACKGROUND SECTION */
+/* ---------------------------- */
+#main-section.computer-win {
+    box-shadow: 0px 0px 1px 10px rgb(199, 17, 17);
+}
+
+#main-section.human-win {
+    box-shadow: 0px 0px 1px 10px rgb(4, 185, 4);
+}
+
+/* ---------------------------- */
 /* FOREGROUND SECTION */
 /* ---------------------------- */
 
 #humanPlay > button:hover {
-    box-shadow: 0px 0px 5px 2px white;
+    box-shadow: 0px 0px 5px 2px rgb(145, 145, 145);
+    cursor: pointer;
 }
 
 .selected {
-    box-shadow: 0px 0px 5px 2px white;
+    box-shadow: 0px 0px 5px 2px rgb(255, 255, 255);
     transform: scale(1.05);
 }
 
@@ -234,5 +254,5 @@ main {
 
 #computer .computer-point,
 #computer .computer-point * {
-    background-color: rgba(255, 255, 255, 1);
+    background-color: rgb(241, 71, 71);
 }
