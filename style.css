@@ -157,12 +157,7 @@ main {
     transition: all 0.5s;
 }
 
-#humanPlay > svg {
-    max-width: 50%;
-    height: auto;
-    /* Optional */
-    display: block;
-}
+
 /* ---------------------------- */
 /* FRONTPAGE SECTION */
 /* ---------------------------- */
