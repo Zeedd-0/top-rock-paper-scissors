@@ -45,10 +45,10 @@ function roundResultText(roundPoint) {
             result = `It is a tie! ${humanChoice} equals to ${computerChoice}.`;
             break;
         case 1:
-            result = `You win! ${humanChoice} beats ${computerChoice}!`;
+            result = `You won! ${humanChoice} beats ${computerChoice}!`;
             break;
         case -1:
-            result = `You lose! ${humanChoice} loses to ${computerChoice}!`;
+            result = `You lost! ${humanChoice} loses to ${computerChoice}!`;
             break;
     };
     RESULT_TEXT.innerText = result;
@@ -71,6 +71,21 @@ function scoreRound(roundPoint) {
 }
 
 
+// test game winner
+function testGameWinner() {
+    playRound();
+    if (humanScore === REQUIRED_WINS) {
+        MAIN_SECTION.classList.add('human-win');
+        RESULT_TEXT.innerText = 'YOU WON!';
+    } else if (computerScore === REQUIRED_WINS) {
+        MAIN_SECTION.classList.add('computer-win');
+        RESULT_TEXT.innerText = 'YOU LOST!';
+    } else {
+        return 0;
+    };
+    return 1;
+}
+
 // ending round
 function endRound() {
     RESULT_TEXT.innerText = '';
@@ -81,14 +96,17 @@ function endRound() {
     });
 }
 
+
 // ending game
 function endGame() {
+    MAIN_SECTION.classList.remove('computer-win', 'human-win');
+    RESULT_TEXT.innerText = '';
     COMPUTER_BOARD.forEach((div) => {
         div.classList.remove('computer-point');
-    })
+    });
     HUMAN_BOARD.forEach((div) => {
         div.classList.remove('human-point');
-    })
+    });
 }
 
 
@@ -104,15 +122,13 @@ function playRound() {
 
 // play game with roundMAx rounds
 function playGame() {
-    if (Math.max(humanScore, computerScore) < REQUIRED_WINS) {
-        playRound();
-    } else {
+    if (testGameWinner() === 1) {
         humanScore = 0;
         computerScore = 0;
-        console.log('New game started!');
-        endRound();
-        endGame(); 
-        PLAY_BTN.classList.remove('invisible');
+        setTimeout(() => {
+            endGame(),
+            GAME_PAGE.classList.remove('invisible')
+     }, 3.0 * 1000);
     };
 }
 
@@ -120,8 +136,9 @@ function playGame() {
 // ----------------------------------------------------------------//
 // INTERACTION
 // global variables
-const COMPUTER_BOARD = document.querySelectorAll('#computer > div')
-const HUMAN_BOARD = document.querySelectorAll('#human > div')
+const MAIN_SECTION = document.querySelector('#main-section');
+const COMPUTER_BOARD = document.querySelectorAll('#computer > div');
+const HUMAN_BOARD = document.querySelectorAll('#human > div');
 const SELECTIONS = document.querySelectorAll('#humanPlay > button');
 let choice = document.querySelector('#computerPlay > .choice');
 const RESULT_TEXT = document.querySelector('#text');
@@ -135,9 +152,9 @@ window.addEventListener('load', () => {
     });
 })
 
-// PLAY_BTN.addEventListener('click', (e) => {
-//     GAME_PAGE.classList.add('invisible');
-// })
+PLAY_BTN.addEventListener('click', (e) => {
+    GAME_PAGE.classList.add('invisible');
+})
 
 SELECTIONS.forEach(selection => {
     selection.addEventListener('click', (e) => {
@@ -197,9 +214,9 @@ const HAND = [];
 // o GOTTA DEFINE HOW I GONNA DO THE GAME OF ROUNDS
 // o RESET STYLES (REMOVE CLASS OR TOGGLE) AFTER EACH ROUND
 // o RESET STYLES (REMOVE CLASS OR TOGGLE) AFTER EACH GAME
-// HOW GONNA SHOW GAME (SET OF ROUNDS) WON OR LOSE
+// o HOW GONNA SHOW GAME (SET OF ROUNDS) WON OR LOSE
 // PREVENT CHOSING OTHER HAND (BUTTON) BEFORE GAME ENDING
-// MORE DEFAULT STYLING (GAME BOARD)
+// o MORE DEFAULT STYLING (GAME BOARD)
+// o MORE DEFAULT STYLING (GAME PAGE)
 // MORE TRANSITION AND INTERACTION EFFECTS (GAME BOARD)
-// MORE DEFAULT STYLING (GAME PAGE)
 // MORE TRANSITION AND INTERACTION EFFECTS (GAME PAGE)
