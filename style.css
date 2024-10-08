@@ -142,7 +142,7 @@ main {
 .choice {
     height: 125px;
     width: 100px;
-    background-color: green;
+    background-color: rgb(94, 94, 94);
     border-radius: 5px;
     border: none;
     text-align: center;
@@ -150,13 +150,19 @@ main {
 }
 
 #humanPlay > button {
+    background-color: rgb(213, 214, 213);    
     height: calc(125px * 1.2);
     width: calc(100px * 1.2);
     line-height: calc(125px * 1.2);
     transition: all 0.5s;
 }
 
-
+#humanPlay > svg {
+    max-width: 50%;
+    height: auto;
+    /* Optional */
+    display: block;
+}
 /* ---------------------------- */
 /* FRONTPAGE SECTION */
 /* ---------------------------- */
@@ -218,12 +224,12 @@ main {
     transform: scale(1.05);
 }
 
-.human-choice {
-    background-color: greenyellow;
+#humanPlay > .human-choice {
+    background-color: rgb(170, 240, 170);
 }
 
 .computer-choice {
-    background-color: rgb(54, 141, 240);
+    background-color: rgb(213, 214, 213);
 }
 
 #human .human-point,
