@@ -14,20 +14,11 @@ function getComputerChoice() {
 }
 
 // get human choice
-function getHumanChoice(choice) {
-        let input = choice.toLowerCase().trim();
+function getHumanChoice(roundChoice) {
+        let input = roundChoice.toLowerCase().trim();
         return HAND.indexOf(input);
 }
 
-
-// play round
-function playRound() {
-    const ROUND_POINT = gameLogic();
-    roundResultText(ROUND_POINT);
-    getScore();
-    scoreRound(ROUND_POINT);
-    // roundSummaryText();
-}
 
 // rock-paper-scissors logic game
 function gameLogic() {
@@ -42,7 +33,6 @@ function gameLogic() {
     };
     return roundPoint;
 }
-
 
 // display round result text
 function roundResultText(roundPoint) {
@@ -64,32 +54,53 @@ function roundResultText(roundPoint) {
     RESULT_TEXT.innerText = result;
 };
 
-
 // marking round score
 function scoreRound(roundPoint) {
     switch (roundPoint) {
         case 0:
             break;
         case 1:
-            HUMAN_BOARD[HUMAN_BOARD.length - humanScore - 1].classList.add('human-point');
+            humanScore ++;
+            HUMAN_BOARD[HUMAN_BOARD.length - humanScore].classList.add('human-point');
             break;
         case -1:
-            COMPUTER_BOARD[computerScore].classList.add('computer-point');
+            computerScore ++
+            COMPUTER_BOARD[computerScore - 1].classList.add('computer-point');
             break;
     };
 }
 
-// round summary text
-// function roundSummaryText(){
-//     let result;
-//     if (Math.max(humanScore, computerScore) < REQUIRED_WINS) {
-//         console.log(`${REQUIRED_WINS - humanScore} rounds to win!`);
-//     } else {
-//         humanScore > computerScore ? result = 'won' : result = 'lost';
-//         console.log(`You ${result}!`);
-//     }
-// }
 
+// ending round
+function endRound() {
+    RESULT_TEXT.innerText = '';
+    choice.classList.remove('selected', 'computer-choice');
+    choice.innerText = '';
+    SELECTIONS.forEach(selection => {
+        selection.classList.remove('selected', 'human-choice');
+    });
+}
+
+// ending game
+function endGame() {
+    COMPUTER_BOARD.forEach((div) => {
+        div.classList.remove('computer-point');
+    })
+    HUMAN_BOARD.forEach((div) => {
+        div.classList.remove('human-point');
+    })
+}
+
+
+// play round
+function playRound() {
+    const ROUND_POINT = gameLogic();
+    roundResultText(ROUND_POINT);
+    scoreRound(ROUND_POINT);
+    setTimeout(() => {
+        endRound();
+    }, 1.0 * 1000);
+}
 
 // play game with roundMAx rounds
 function playGame() {
@@ -98,9 +109,10 @@ function playGame() {
     } else {
         humanScore = 0;
         computerScore = 0;
-        console.log('New game started!')
-        // AQUI AQUI AQUI AQUI AQUI AQUI AQUI AQUI AQUI AQUI 
-        playRound();
+        console.log('New game started!');
+        endRound();
+        endGame(); 
+        PLAY_BTN.classList.remove('invisible');
     };
 }
 
@@ -111,11 +123,18 @@ function playGame() {
 const COMPUTER_BOARD = document.querySelectorAll('#computer > div')
 const HUMAN_BOARD = document.querySelectorAll('#human > div')
 const SELECTIONS = document.querySelectorAll('#humanPlay > button');
+let choice = document.querySelector('#computerPlay > .choice');
 const RESULT_TEXT = document.querySelector('#text');
 const PLAY_BTN = document.querySelector('#play-div');
 const GAME_PAGE = document.querySelector('#frontpage-section');
 
 // events
+window.addEventListener('load', () => {
+    HANDS.forEach(hand => {
+        HAND.push(hand.hand);
+    });
+})
+
 // PLAY_BTN.addEventListener('click', (e) => {
 //     GAME_PAGE.classList.add('invisible');
 // })
@@ -127,10 +146,10 @@ SELECTIONS.forEach(selection => {
         computerChoice = getComputerChoice();
         setTimeout(() => {
             computerStyle();
-        }, 200);
+        }, 0.2 * 1000);
         setTimeout(() => {
-            playRound(); // <<<<<<<<<<<<<<<<<<<<<< PLAY ROUND
-        }, 1600);
+            playGame();
+        }, 1.6 * 1000);
     });
 });
 
@@ -144,19 +163,13 @@ function selectStyle(e) {
     e.target.classList.add('selected', 'human-choice');
 }
 function computerStyle() {
-    let choice = document.querySelector('#computerPlay > .choice');
     choice.classList.add('selected');
     setTimeout(() => {
         choice.classList.add('computer-choice');
         choice.innerText = HAND[computerChoice];
-    }, 800);
+    }, 0.8 * 1000);
 };
 
-// round per round poiting
-function getScore() {
-    computerScore = document.querySelectorAll('#computer > div[class~="point"]').length
-    humanScore = document.querySelectorAll('#human > div[class~="point"]').length
-}
 
 const test = document.querySelectorAll('#computer div');
 function testi() {
@@ -164,6 +177,7 @@ function testi() {
     sphere.style.backgroundColor = 'red';
 });
 }
+
 
 
 // ----------------------------------------------------------------//
@@ -179,15 +193,10 @@ const HANDS = [
     {hand: 'scissor', win: 'paper', lose: 'rock'}
 ]
 const HAND = [];
-window.addEventListener('load', () => {
-    HANDS.forEach(hand => {
-        HAND.push(hand.hand);
-    });
-})
 
 // o GOTTA DEFINE HOW I GONNA DO THE GAME OF ROUNDS
-// RESET STYLES (REMOVE CLASS OR TOGGLE) AFTER EACH ROUND
-// RESET STYLES (REMOVE CLASS OR TOGGLE) AFTER EACH GAME
+// o RESET STYLES (REMOVE CLASS OR TOGGLE) AFTER EACH ROUND
+// o RESET STYLES (REMOVE CLASS OR TOGGLE) AFTER EACH GAME
 // HOW GONNA SHOW GAME (SET OF ROUNDS) WON OR LOSE
 // PREVENT CHOSING OTHER HAND (BUTTON) BEFORE GAME ENDING
 // MORE DEFAULT STYLING (GAME BOARD)
