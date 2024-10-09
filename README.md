@@ -20,3 +20,5 @@ js
 . ternary conditional
 . while loop
 . global and local variables
+. event listeners
+. DOM manipulation
